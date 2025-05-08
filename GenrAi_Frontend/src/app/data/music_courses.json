@@ -1,0 +1,21 @@
+{
+  "courses": [
+    {
+      "id": 1,
+      "title": "GitHub Repository Link",
+      "slug": "Git Repo",
+      "description": "Get the code and project file, with instructions on running the code on my Github Account",
+      "isFeatured": true,
+      "url": "https://github.com/Hooper-at-Dev/Music_Genre_Prediction_AI"
+    },
+    {
+      "id": 2,
+      "title": "Research paper of the model.",
+      "slug": "Research paper",
+      "description": "Read and learn about the model and its architectur. ",
+      "isFeatured": true,
+      "url": "/research"
+
+    }
+  ]
+}
