@@ -45,8 +45,8 @@ I HAVE UPLOADED THE WEIGHTS ON DRIVE YOU CAN DOWNLOAD FROM [HERE](https://drive.
 
 Below are the Accuraccy, Loss and Confusion Matrix graph
 
-![Accuraccy](GenrAi/Matrix/ACC.png) 
+![Accuraccy](ACC.png) 
 
-![Loss](Matrix/Loss.png) 
+![Loss](Loss.png) 
 
-![Accuraccy](Matrix/Confusion_Matrix.png) 
+![Condusion Matrix](Matrix/Confusion_Matrix.png) 
