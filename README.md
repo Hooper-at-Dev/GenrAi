@@ -47,6 +47,6 @@ Below are the Accuraccy, Loss and Confusion Matrix graph
 
 ![Accuraccy](ACC.png) 
 
-![Loss](Loss.png) 
+![Loss](GenrAi/Matrix/Loss.png) 
 
 ![Condusion Matrix](Matrix/Confusion_Matrix.png) 
