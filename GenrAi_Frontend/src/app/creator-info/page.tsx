@@ -5,7 +5,6 @@ import { cn } from "@/app/utils/utils";
 import { BackgroundGradient } from "@/app/components/ui/background-gradient";
 import Image from "next/image";
 import { CardContainer, CardBody, CardItem } from "@/app/components/ui/3d-card";
-import Link from 'next/link';
 
 // Contact form component to prevent re-rendering the entire page
 const ContactForm = memo(() => {
@@ -338,7 +337,7 @@ const CreatorInfoPage = () => {
                 tags: ["Python", "PayPal Api", "Flask"],
                 projectLink: "https://ai-chat.example.com",
                 repoLink: "https://github.com/username/ai-chat",
-                image: null
+                image: "/python.jpg"
               },
             ].map((project) => (
               <CardContainer
