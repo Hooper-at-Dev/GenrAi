@@ -22,7 +22,7 @@ export const CardContainer = ({
   containerClassName,
 }: CardContainerProps) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [mousePosition, setMousePosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
@@ -75,7 +75,6 @@ export const CardContainer = ({
     </div>
   );
 };
-
 
 interface CardBodyProps {
   children: ReactNode;
