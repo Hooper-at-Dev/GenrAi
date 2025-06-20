@@ -1,8 +1,8 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
 const FLASK_API_URL = 'http://localhost:5000';
 
-export async function POST(request: NextRequest) {
+export async function POST(request) {
   try {
     // Forward the request to Flask API
     const formData = await request.formData();
@@ -29,4 +29,4 @@ export async function POST(request: NextRequest) {
       { status: 500 }
     );
   }
-} 
+}

@@ -2,12 +2,12 @@
 import React, { useState, useCallback, memo } from "react";
 import { motion } from "framer-motion";
 import { cn } from "../../lib/utils";
-import { BackgroundGradient } from "@/app/components/ui/background-gradient";
+import { BackgroundGradient } from "../components/ui/background-gradient";
 import Image from "next/image";
-import { CardContainer, CardBody, CardItem } from "@/app/components/ui/3d-card";
-import { Rays } from "@/app/components/ui/rays";
-import { Beams } from "@/app/components/ui/beams";
-import { Lens } from "@/app/components/ui/lens";
+import { CardContainer, CardBody, CardItem } from "../components/ui/3d-card";
+import { Rays } from "../components/ui/rays";
+import { Beams } from "../components/ui/beams";
+import { Lens } from "../components/ui/lens";
 
 const DatasetInfoPage = () => {
   const [activeTab, setActiveTab] = useState("overview");
@@ -309,7 +309,7 @@ const DatasetInfoPage = () => {
               <Beams />
               <div className="relative z-10">
                 <Lens>
-                  <img
+                  <Image
                     src="/dataset/waveform.png"
                     alt="Waveform visualization"
                     width={600}
@@ -336,7 +336,7 @@ const DatasetInfoPage = () => {
               <Beams />
               <div className="relative z-10">
                 <Lens>
-                  <img
+                  <Image
                     src="/dataset/freq.png"
                     alt="Frequency spectrum"
                     width={600}
@@ -380,7 +380,7 @@ const DatasetInfoPage = () => {
               <Beams />
               <div className="relative z-10">
                 <Lens>
-                  <img
+                  <Image
                     src="/dataset/Mel.png"
                     alt="Neural network visualization"
                     width={600}
@@ -417,7 +417,7 @@ const DatasetInfoPage = () => {
               <Beams />
               <div className="relative z-10">
                 <Lens>
-                  <img
+                  <Image
                     src="/dataset/genre.png"
                     alt="Genre distribution"
                     width={600}

@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { BackgroundGradient } from "@/app/components/ui/background-gradient";
+import { BackgroundGradient } from "../components/ui/background-gradient";
 import Image from "next/image";
-import { CardContainer, CardBody, CardItem } from "@/app/components/ui/3d-card";
+import { CardContainer, CardBody, CardItem } from "../components/ui/3d-card";
 import { cn } from "../../lib/utils";
 import {
   Chart as ChartJS,

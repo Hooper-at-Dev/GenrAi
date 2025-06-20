@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from 'react';
 import { motion } from "framer-motion";
-import { TracingBeam } from "@/components/ui/tracing-beam";
+import { TracingBeam } from "../components/ui/tracing-beam";
 
 export default function ResearchPage() {
   const viewer = useRef(null);
