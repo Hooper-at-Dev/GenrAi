@@ -1,12 +1,10 @@
-import type { Config } from "tailwindcss";
-
 const colors = require("tailwindcss/colors");
 const {
   default: flattenColorPalette,
 } = require("tailwindcss/lib/util/flattenColorPalette");
 
 // Plugin to add each Tailwind color as a global CSS variable
-function addVariablesForColors({ addBase, theme }: any) {
+function addVariablesForColors({ addBase, theme }) {
   const allColors = flattenColorPalette(theme('colors'));
   const newVars = Object.fromEntries(
     Object.entries(allColors).map(([key, value]) => [`--${key}`, value])
@@ -16,7 +14,8 @@ function addVariablesForColors({ addBase, theme }: any) {
     ':root': newVars,
   });
 }
-const config: Config = {
+
+const config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -53,7 +52,7 @@ const config: Config = {
   },
   plugins: [
     addVariablesForColors,
-    function({ addUtilities }: any) {
+    function({ addUtilities }) {
       addUtilities({
         '.perspective-1000px': {
           perspective: '1000px',
@@ -68,4 +67,5 @@ const config: Config = {
     },
   ],
 };
+
 export default config;

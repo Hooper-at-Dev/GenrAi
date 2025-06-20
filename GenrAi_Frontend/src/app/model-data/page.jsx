@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { BackgroundGradient } from "@/app/components/ui/background-gradient";
 import Image from "next/image";
 import { CardContainer, CardBody, CardItem } from "@/app/components/ui/3d-card";
-import { cn } from "@/app/utils/utils";
+import { cn } from "../../lib/utils";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -14,8 +14,6 @@ import {
   Title,
   Tooltip,
   Legend,
-  ChartOptions,
-  TooltipItem,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 
@@ -31,10 +29,10 @@ ChartJS.register(
 );
 
 const ModelInfoPage = () => {
-  const [activeTab, setActiveTab] = useState<"architecture" | "preprocessing" | "training" | "performance">("architecture");
+  const [activeTab, setActiveTab] = useState("architecture");
 
   // Reusable CenteredTab wrapper for consistent alignment
-  const CenteredTab = ({ children }: { children: React.ReactNode }) => (
+  const CenteredTab = ({ children }) => (
     <div className="flex justify-center w-full">
       <div className="w-full max-w-4xl">{children}</div>
     </div>
@@ -167,7 +165,6 @@ const ModelInfoPage = () => {
                 <div className="pl-4">plt.figure(figsize=(<span className="text-green-400">4</span>, <span className="text-green-400">2</span>))</div>
                 <div className="pl-4">librosa.display.waveshow(chunk, sr=sr)</div>
                 <div className="pl-4">plt.show()</div>
-
               </div>
               <p className="mt-3 text-gray-200">
                 Audio files are loaded and chunked into 4 second segments with 2 second overlap.
@@ -276,7 +273,6 @@ const ModelInfoPage = () => {
 
                   <div><span className="text-gray-500">#Output Layer</span></div>
                   <div>model.add(Dense(units=<span className="text-blue-400">len</span>(classes), activation=<span className="text-green-400">'softmax'</span>))</div>
-
                 </div>
               </CardItem>
             </CardBody>
@@ -378,18 +374,16 @@ const ModelInfoPage = () => {
                   </thead>
                   <tbody>
                     {[
-                      
-                        { genre: "Blues", correct: 290, total: 305, accuracy: 95.08 },
-                        { genre: "Classical", correct: 291, total: 295, accuracy: 98.64 },
-                        { genre: "Country", correct: 280, total: 312, accuracy: 89.74 },
-                        { genre: "Disco", correct: 300, total: 316, accuracy: 94.94 },
-                        { genre: "Hiphop", correct: 250, total: 276, accuracy: 90.58 },
-                        { genre: "Jazz", correct: 300, total: 316, accuracy: 94.94 },
-                        { genre: "Metal", correct: 300, total: 302, accuracy: 99.34 },
-                        { genre: "Pop", correct: 270, total: 291, accuracy: 92.78 },
-                        { genre: "Reggae", correct: 280, total: 299, accuracy: 93.65 },
-                        { genre: "Rock", correct: 270, total: 289, accuracy: 93.43 }
-                                            
+                      { genre: "Blues", correct: 290, total: 305, accuracy: 95.08 },
+                      { genre: "Classical", correct: 291, total: 295, accuracy: 98.64 },
+                      { genre: "Country", correct: 280, total: 312, accuracy: 89.74 },
+                      { genre: "Disco", correct: 300, total: 316, accuracy: 94.94 },
+                      { genre: "Hiphop", correct: 250, total: 276, accuracy: 90.58 },
+                      { genre: "Jazz", correct: 300, total: 316, accuracy: 94.94 },
+                      { genre: "Metal", correct: 300, total: 302, accuracy: 99.34 },
+                      { genre: "Pop", correct: 270, total: 291, accuracy: 92.78 },
+                      { genre: "Reggae", correct: 280, total: 299, accuracy: 93.65 },
+                      { genre: "Rock", correct: 270, total: 289, accuracy: 93.43 }
                     ].map((item, i) => (
                       <tr key={i} className="border-b border-white/5 hover:bg-white/5">
                         <td className="py-2 px-6">{item.genre}</td>
@@ -489,7 +483,6 @@ const ModelInfoPage = () => {
                           pointBorderWidth: 1,
                         }
                       ]
-                      
                     }}
                     options={{
                       responsive: true,
@@ -507,8 +500,7 @@ const ModelInfoPage = () => {
                               size: 10
                             },
                             maxRotation: 0,
-                            callback: function(tickValue: string | number, index: number) {
-                              // Show only every 5th tick
+                            callback: function(tickValue, index) {
                               return index % 5 === 0 ? tickValue : '';
                             }
                           },
@@ -532,8 +524,7 @@ const ModelInfoPage = () => {
                               size: 10
                             },
                             maxRotation: 0,
-                            callback: function(tickValue: string | number, index: number) {
-                              // Show only every 5th tick
+                            callback: function(tickValue, index) {
                               return index % 5 === 0 ? tickValue : '';
                             }
                           },
@@ -566,7 +557,7 @@ const ModelInfoPage = () => {
                           cornerRadius: 4,
                           displayColors: true,
                           callbacks: {
-                            title: function(context: any) {
+                            title: function(context) {
                               return `Epoch ${context[0].label}`;
                             }
                           }
@@ -619,7 +610,7 @@ const ModelInfoPage = () => {
                           pointBorderColor: 'white',
                           pointBorderWidth: 1,
                         }
-                      ]                      
+                      ]
                     }}
                     options={{
                       responsive: true,
@@ -636,7 +627,7 @@ const ModelInfoPage = () => {
                             font: {
                               size: 10
                             },
-                            callback: function(tickValue: string | number) {
+                            callback: function(tickValue) {
                               return (Number(tickValue) * 100).toFixed(0) + '%';
                             }
                           },
@@ -660,8 +651,7 @@ const ModelInfoPage = () => {
                               size: 10
                             },
                             maxRotation: 0,
-                            callback: function(tickValue: string | number, index: number) {
-                              // Show only every 5th tick
+                            callback: function(tickValue, index) {
                               return index % 5 === 0 ? tickValue : '';
                             }
                           },
@@ -694,10 +684,10 @@ const ModelInfoPage = () => {
                           cornerRadius: 4,
                           displayColors: true,
                           callbacks: {
-                            title: function(context: any) {
+                            title: function(context) {
                               return `Epoch ${context[0].label}`;
                             },
-                            label: function(context: any) {
+                            label: function(context) {
                               let label = context.dataset.label || '';
                               if (label) {
                                 label += ': ';
@@ -820,7 +810,7 @@ const ModelInfoPage = () => {
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id as any)}
+                  onClick={() => setActiveTab(tab.id)}
                   className={cn(
                     "relative px-4 py-2 rounded-full transition-all duration-300 whitespace-nowrap",
                     activeTab === tab.id
@@ -843,4 +833,4 @@ const ModelInfoPage = () => {
   );
 };
 
-export default ModelInfoPage; 
+export default ModelInfoPage;

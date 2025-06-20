@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
 
 // This middleware handles CORS for API requests to our Flask backend
-export function middleware(request: NextRequest) {
+export function middleware(request) {
   // Get the response
   const response = NextResponse.next();
 
@@ -14,7 +13,6 @@ export function middleware(request: NextRequest) {
   return response;
 }
 
-// Configure which paths should be handled by this middleware
 export const config = {
   matcher: ['/api/:path*'],
-}; 
+};

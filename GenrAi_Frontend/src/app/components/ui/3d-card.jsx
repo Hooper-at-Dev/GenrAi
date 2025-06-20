@@ -1,31 +1,18 @@
 "use client";
 
-import React, {
-  useState,
-  useRef,
-  ReactNode,
-  ElementType,
-  MouseEvent,
-  ComponentPropsWithoutRef,
-} from "react";
-import { cn } from "@/app/utils/utils";
-
-interface CardContainerProps {
-  children: ReactNode;
-  className?: string;
-  containerClassName?: string;
-}
+import React, { useState, useRef } from "react";
+import { cn } from "../../../lib/utils";
 
 export const CardContainer = ({
   children,
   className,
   containerClassName,
-}: CardContainerProps) => {
+}) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [mousePosition, setMousePosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const containerRef = useRef(null);
 
-  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = (e) => {
     if (!containerRef.current) return;
 
     const { left, top, width, height } = containerRef.current.getBoundingClientRect();
@@ -34,7 +21,7 @@ export const CardContainer = ({
 
     setMousePosition({ x, y });
 
-    const shineElement = containerRef.current.querySelector(".card-shine") as HTMLElement | null;
+    const shineElement = containerRef.current.querySelector(".card-shine");
     if (shineElement) {
       const shineDeg = Math.atan2(y - 0.5, x - 0.5) * (180 / Math.PI);
       shineElement.style.setProperty("--shine-deg", `${shineDeg}deg`);
@@ -76,31 +63,13 @@ export const CardContainer = ({
   );
 };
 
-interface CardBodyProps {
-  children: ReactNode;
-  className?: string;
-}
 
-export const CardBody = ({ children, className }: CardBodyProps) => {
+export const CardBody = ({ children, className }) => {
   return <div className={cn("relative w-full h-full p-6", className)}>{children}</div>;
 };
 
-
-type CardItemProps<T extends ElementType> = {
-  as?: T;
-  children: ReactNode;
-  className?: string;
-  translateX?: number | string;
-  translateY?: number | string;
-  translateZ?: number | string;
-  rotateX?: number | string;
-  rotateY?: number | string;
-  rotateZ?: number | string;
-  href?: string;
-} & ComponentPropsWithoutRef<T>;
-
-export const CardItem = <T extends ElementType = "div">({
-  as,
+export const CardItem = ({
+  as: Tag = "div",
   children,
   className,
   translateX = 0,
@@ -111,9 +80,7 @@ export const CardItem = <T extends ElementType = "div">({
   rotateZ = 0,
   href,
   ...rest
-}: CardItemProps<T>) => {
-  const Tag = as || "div";
-
+}) => {
   return (
     <Tag
       className={cn("card-item transform-gpu transition-transform duration-300", className)}

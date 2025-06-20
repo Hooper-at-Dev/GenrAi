@@ -1,27 +1,17 @@
 "use client";
 
-import React, { useState, ChangeEvent } from "react";
+import React, { useState } from "react";
 import { Spotlight } from "../components/ui/Spotlight";
 import { Button } from "../components/ui/moving-border";
 
-interface Prediction {
-  genre: string;
-  percentage: number;
-}
-
-interface Results {
-  predicted_genre: string;
-  predictions: Prediction[];
-}
-
 export default function ClassifyPage() {
-  const [file, setFile] = useState<File | null>(null);
+  const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState("");
   const [isUploading, setIsUploading] = useState(false);
-  const [results, setResults] = useState<Results | null>(null);
+  const [results, setResults] = useState(null);
   const [error, setError] = useState("");
 
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (e) => {
     const selectedFile = e.target.files?.[0];
     if (selectedFile) {
       setFile(selectedFile);
@@ -56,7 +46,7 @@ export default function ClassifyPage() {
 
       const data = await response.json();
       setResults(data);
-    } catch (err: unknown) {
+    } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred while processing your file");
     } finally {
       setIsUploading(false);
@@ -162,4 +152,4 @@ export default function ClassifyPage() {
       </div>
     </main>
   );
-} 
+}

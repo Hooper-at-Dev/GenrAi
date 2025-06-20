@@ -1,8 +1,9 @@
 "use client";
+
 import { useState } from "react";
-import { Lens } from "@/app/components/ui/lens";
+import { Lens } from "./ui/lens";
 import { motion } from "framer-motion";
-import { cn } from "@/app/utils/utils";
+import { cn } from "../../../lib/utils";
 
 export default function LensDemo() {
   const [hovering, setHovering] = useState(false);
@@ -41,8 +42,6 @@ export default function LensDemo() {
     </div>
   );
 }
-
-// Sorry about this but it looks cool
 
 const Beams = () => {
   return (
@@ -132,7 +131,7 @@ const Beams = () => {
   );
 };
 
-const Rays = ({ className }: { className?: string }) => {
+const Rays = ({ className }) => {
   return (
     <svg
       width="380"
@@ -141,7 +140,7 @@ const Rays = ({ className }: { className?: string }) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={cn(
-        "absolute left-0 top-0  pointer-events-none z-[1]",
+        "absolute left-0 top-0 pointer-events-none z-[1]",
         className
       )}
     >
@@ -467,4 +466,4 @@ const Rays = ({ className }: { className?: string }) => {
       </defs>
     </svg>
   );
-}; 
+};

@@ -1,8 +1,8 @@
 "use client";
 
-import { cn } from "@/app/utils/utils";
+import { cn } from "../../../lib/utils";
 
-export const Rays = ({ className }: { className?: string }) => {
+export const Rays = ({ className }) => {
   return (
     <svg
       width="380"
@@ -337,4 +337,4 @@ export const Rays = ({ className }: { className?: string }) => {
       </defs>
     </svg>
   );
-}; 
+};

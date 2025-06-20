@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useCallback, memo } from "react";
 import { motion } from "framer-motion";
-import { cn } from "@/app/utils/utils";
+import { cn } from "../../lib/utils";
 import { BackgroundGradient } from "@/app/components/ui/background-gradient";
 import Image from "next/image";
 import { CardContainer, CardBody, CardItem } from "@/app/components/ui/3d-card";
@@ -10,10 +10,10 @@ import { Beams } from "@/app/components/ui/beams";
 import { Lens } from "@/app/components/ui/lens";
 
 const DatasetInfoPage = () => {
-  const [activeTab, setActiveTab] = useState<"overview" | "features" | "statistics" | "visualization">("overview");
+  const [activeTab, setActiveTab] = useState("overview");
 
   // Reusable CenteredTab wrapper for consistent alignment
-  const CenteredTab = ({ children }: { children: React.ReactNode }) => (
+  const CenteredTab = ({ children }) => (
     <div className="flex justify-center w-full">
       <div className="w-full max-w-4xl">{children}</div>
     </div>
@@ -324,7 +324,7 @@ const DatasetInfoPage = () => {
                     Audio Waveform Analysis
                   </h2>
                   <p className="text-neutral-200 text-left">
-                    The waveform visualization shows the raw audio signal patterns across different genres.This graph represents a waveform of a music signal from the GTZAN dataset. The x-axis shows time (in seconds), and the y-axis represents the amplitude of the audio signal. The blue line depicts the fluctuation of the audio waveform over time, indicating changes in sound intensity and frequency. This visualization is useful for analyzing the temporal characteristics of the music.
+                    The waveform visualization shows the raw audio signal patterns across different genres. This graph represents a waveform of a music signal from the GTZAN dataset. The x-axis shows time (in seconds), and the y-axis represents the amplitude of the audio signal. The blue line depicts the fluctuation of the audio waveform over time, indicating changes in sound intensity and frequency. This visualization is useful for analyzing the temporal characteristics of the music.
                   </p>
                 </motion.div>
               </div>
@@ -348,7 +348,7 @@ const DatasetInfoPage = () => {
                   className="py-4 relative z-20"
                 >
                   <h2 className="text-white text-2xl text-left font-bold">
-                  Spectrograms of music samples from different genres
+                    Spectrograms of music samples from different genres
                   </h2>
                   <div className="text-neutral-200 text-left space-y-4">
                     <p>
@@ -370,7 +370,6 @@ const DatasetInfoPage = () => {
                     </ul>
                     <p>These visualizations help distinguish musical features across genres.</p>
                   </div>
-
                 </motion.div>
               </div>
             </div>
@@ -393,7 +392,7 @@ const DatasetInfoPage = () => {
                   className="py-4 relative z-20"
                 >
                   <h2 className="text-white text-2xl text-left font-bold">
-                  Mel-Spectrogram
+                    Mel-Spectrogram
                   </h2>
                   <div className="text-neutral-200 text-left space-y-4">
                     <p>
@@ -408,7 +407,6 @@ const DatasetInfoPage = () => {
                       The vertical lines and patterns in the spectrogram reveal the dynamic changes in frequency content throughout the audio, making it useful for analyzing musical or speech signals, especially in machine learning applications like music genre classification or speech recognition.
                     </p>
                   </div>
-
                 </motion.div>
               </div>
             </div>
@@ -431,7 +429,7 @@ const DatasetInfoPage = () => {
                   className="py-4 relative z-20"
                 >
                   <h2 className="text-white text-2xl text-left font-bold">
-                  Musical Key Distribution by Genre
+                    Musical Key Distribution by Genre
                   </h2>
                   <div className="text-neutral-200 text-left space-y-4">
                     <p>
@@ -451,7 +449,6 @@ const DatasetInfoPage = () => {
                       This visualization helps understand the tonal characteristics and preferences of different music genres.
                     </p>
                   </div>
-
                 </motion.div>
               </div>
             </div>
@@ -513,7 +510,7 @@ const DatasetInfoPage = () => {
             {tabs.map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
+                onClick={() => setActiveTab(tab.id)}
                 className={cn(
                   "px-4 py-2 rounded-md transition-all text-sm font-medium",
                   activeTab === tab.id

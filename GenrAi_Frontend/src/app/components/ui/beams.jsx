@@ -86,4 +86,4 @@ export const Beams = () => {
       </defs>
     </svg>
   );
-}; 
+};

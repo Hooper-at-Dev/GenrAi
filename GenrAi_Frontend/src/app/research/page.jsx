@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { TracingBeam } from "@/components/ui/tracing-beam";
 
 export default function ResearchPage() {
-  const viewer = useRef<HTMLDivElement>(null);
+  const viewer = useRef(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export default function ResearchPage() {
           setIsLoading(false);
         });
 
-        instance.Core.documentViewer.addEventListener('documentError', (error: Error) => {
+        instance.Core.documentViewer.addEventListener('documentError', (error) => {
           console.error('Document Error:', error);
           setIsLoading(false);
         });
@@ -99,4 +99,4 @@ export default function ResearchPage() {
       </TracingBeam>
     </div>
   );
-} 
+}

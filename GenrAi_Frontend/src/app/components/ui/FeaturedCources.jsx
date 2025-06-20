@@ -1,21 +1,15 @@
 "use client";
+
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import courseData from "../../data/music_courses.json";
 import Link from "next/link";
 import { BackgroundGradient } from "./background-gradient";
-import { cn } from "@/app/utils/utils";
+import { cn } from "../../../lib/utils";
 
 function FeaturedCourses() {
-  interface Course {
-    isFeatured: boolean;
-    title: string;
-    description: string;
-    id: number;
-  }
-
   const featuredCourses = courseData.courses.filter(
-    (course: Course) => course.isFeatured
+    (course) => course.isFeatured
   );
 
   const sectionVariants = {
@@ -85,7 +79,7 @@ function FeaturedCourses() {
         <div className="mt-12 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 justify-center">
             <AnimatePresence>
-              {featuredCourses.map((course: Course) => (
+              {featuredCourses.map((course) => (
                 <motion.div
                   key={course.id}
                   className="flex justify-center"
@@ -133,7 +127,6 @@ function FeaturedCourses() {
             </AnimatePresence>
           </div>
         </div>
-
       </motion.div>
     </div>
   );

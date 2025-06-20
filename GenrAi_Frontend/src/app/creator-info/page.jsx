@@ -1,10 +1,10 @@
 "use client";
 import React, { useState, useCallback, memo } from "react";
 import { motion } from "framer-motion";
-import { cn } from "@/app/utils/utils";
-import { BackgroundGradient } from "@/app/components/ui/background-gradient";
+import { cn } from "../../lib/utils";
+import { BackgroundGradient } from "../components/ui/background-gradient";
 import Image from "next/image";
-import { CardContainer, CardBody, CardItem } from "@/app/components/ui/3d-card";
+import { CardContainer, CardBody, CardItem } from "../components/ui/3d-card";
 
 // Contact form component to prevent re-rendering the entire page
 const ContactForm = memo(() => {
@@ -13,10 +13,10 @@ const ContactForm = memo(() => {
     email: "",
     message: ""
   });
-  const [formStatus, setFormStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [formStatus, setFormStatus] = useState("idle");
 
   // Handle form input changes with useCallback
-  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = useCallback((e) => {
     const { id, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -25,7 +25,7 @@ const ContactForm = memo(() => {
   }, []);
 
   // Handle form submission with useCallback
-  const handleSubmit = useCallback((e: React.FormEvent) => {
+  const handleSubmit = useCallback((e) => {
     e.preventDefault();
     setFormStatus("sending");
 
@@ -123,10 +123,10 @@ const ContactForm = memo(() => {
 ContactForm.displayName = 'ContactForm';
 
 const CreatorInfoPage = () => {
-  const [activeTab, setActiveTab] = useState<"about" | "skills" | "projects" | "contact">("about");
+  const [activeTab, setActiveTab] = useState("about");
 
   // Reusable CenteredTab wrapper for consistent alignment
-  const CenteredTab = ({ children }: { children: React.ReactNode }) => (
+  const CenteredTab = ({ children }) => (
     <div className="flex justify-center w-full">
       <div className="w-full max-w-4xl">{children}</div>
     </div>
@@ -259,24 +259,22 @@ const CreatorInfoPage = () => {
                 { skill: "MySql", proficiency: 80 },
                 { skill: "Python and Libraries", proficiency: 90 },
                 { skill: "Basketball", proficiency: 1000 }
-              ].map((item, i) => {
-                return (
-                  <div key={i} className="space-y-2">
-                    <div className="flex justify-between">
-                      <span>{item.skill}</span>
-                      <span>{item.proficiency}%</span>
-                    </div>
-                    <div className="h-2 w-full bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                      <motion.div
-                        className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
-                        initial={{ width: 0 }}
-                        animate={{ width: `${item.proficiency}%` }}
-                        transition={{ duration: 1, delay: i * 0.1 }}
-                      />
-                    </div>
+              ].map((item, i) => (
+                <div key={i} className="space-y-2">
+                  <div className="flex justify-between">
+                    <span>{item.skill}</span>
+                    <span>{item.proficiency}%</span>
                   </div>
-                );
-              })}
+                  <div className="h-2 w-full bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                    <motion.div
+                      className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
+                      initial={{ width: 0 }}
+                      animate={{ width: `${item.proficiency}%` }}
+                      transition={{ duration: 1, delay: i * 0.1 }}
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </motion.div>
@@ -301,8 +299,7 @@ const CreatorInfoPage = () => {
               {
                 id: 1,
                 title: "BgZap",
-                description:
-                  "Background removal app using machine learning",
+                description: "Background removal app using machine learning",
                 tags: ["Next.js", "Python", "Flask", "TensorFlow"],
                 projectLink: "https://bgzap.com",
                 repoLink: "https://github.com/username/bgzap",
@@ -311,19 +308,16 @@ const CreatorInfoPage = () => {
               {
                 id: 2,
                 title: "GenrAi",
-                description:
-                  "An ML music classification model with stunning front-end design.",
+                description: "An ML music classification model with stunning front-end design.",
                 tags: ["NextJS", "Tailwind", "Framer Motion", "Python", "Flask", "TensorFlow"],
                 projectLink: "/",
-                repoLink:
-                  "https://github.com/Hooper-at-Dev/Music_Genre_Prediction_AI",
+                repoLink: "https://github.com/Hooper-at-Dev/Music_Genre_Prediction_AI",
                 image: "/genrAi.png",
               },
               {
                 id: 3,
                 title: "ShuttleFy",
-                description:
-                  "A Cab Booking Website, with 3 tier of role based authentication secured with JWT",
+                description: "A Cab Booking Website, with 3 tier of role based authentication secured with JWT",
                 tags: ["Node.js", "React", "MySql"],
                 projectLink: "https://music-app.example.com",
                 repoLink: "https://github.com/username/music-app",
@@ -332,8 +326,7 @@ const CreatorInfoPage = () => {
               {
                 id: 4,
                 title: "Payment Gateway",
-                description:
-                  "Python based payment gateway",
+                description: "Python based payment gateway",
                 tags: ["Python", "PayPal Api", "Flask"],
                 projectLink: "https://ai-chat.example.com",
                 repoLink: "https://github.com/username/ai-chat",
@@ -346,14 +339,11 @@ const CreatorInfoPage = () => {
                 containerClassName="h-full"
               >
                 <CardBody className="relative overflow-hidden group/card h-full">
-                  {/* Project Title */}
                   <CardItem translateZ="50" className="w-full mb-6">
                     <h3 className="text-2xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-500">
                       {project.title}
                     </h3>
                   </CardItem>
-
-                  {/* Image Container with Pop Out Effect */}
                   <CardItem
                     as="div"
                     translateZ="100"
@@ -361,10 +351,7 @@ const CreatorInfoPage = () => {
                     rotateY="0"
                     className="w-full h-60 relative mt-2 mb-8 rounded-xl overflow-hidden"
                   >
-                    {/* Border glow layer */}
                     <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10 rounded-xl"></div>
-
-                    {/* Image wrapper with inner shadow */}
                     <div className="w-full h-full p-[3px] backdrop-blur-sm">
                       <div className="w-full h-full overflow-hidden rounded-lg shadow-[inset_0_0_20px_rgba(0,0,0,0.6)]">
                         <CardItem
@@ -384,13 +371,9 @@ const CreatorInfoPage = () => {
                       </div>
                     </div>
                   </CardItem>
-
-                  {/* Description */}
                   <CardItem translateZ="80" className="w-full">
                     <p className="text-gray-400 mb-4">{project.description}</p>
                   </CardItem>
-
-                  {/* Tags */}
                   <CardItem translateZ="100" className="w-full">
                     <div className="flex flex-wrap gap-2 mb-4">
                       {project.tags.map((tag, i) => (
@@ -403,8 +386,6 @@ const CreatorInfoPage = () => {
                       ))}
                     </div>
                   </CardItem>
-
-                  {/* Action Buttons */}
                   <CardItem translateZ="120" className="w-full mt-auto pt-4 border-t border-white/10">
                     <div className="flex justify-between">
                       <CardItem
@@ -535,7 +516,6 @@ const CreatorInfoPage = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        {/* Floating particles background effect */}
         <div className="fixed inset-0 pointer-events-none z-0 opacity-50">
           {Array.from({ length: 20 }).map((_, i) => (
             <motion.div
@@ -560,14 +540,12 @@ const CreatorInfoPage = () => {
             />
           ))}
         </div>
-
-        {/* Navigation Tabs */}
         <div className="fixed top-32 left-0 right-0 z-10 flex justify-center mb-12">
           <div className="inline-flex bg-white/5 backdrop-blur-md rounded-full p-1">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
+                onClick={() => setActiveTab(tab.id)}
                 className={cn(
                   "px-4 py-2 rounded-full text-sm font-medium transition-all",
                   activeTab === tab.id
@@ -580,8 +558,6 @@ const CreatorInfoPage = () => {
             ))}
           </div>
         </div>
-
-        {/* Content Area */}
         <div className="relative mt-20">
           {tabContent[activeTab]}
         </div>

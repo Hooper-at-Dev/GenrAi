@@ -1,10 +1,9 @@
 "use client";
 
-import React, { ReactNode } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import type { LinkProps } from "next/link";
 
 const transition = {
   type: "spring",
@@ -15,14 +14,7 @@ const transition = {
   restSpeed: 0.001,
 };
 
-interface MenuItemProps {
-  setActive: (item: string) => void;
-  active: string | null;
-  item: string;
-  children?: ReactNode;
-}
-
-export const MenuItem = ({ setActive, active, item, children }: MenuItemProps) => {
+export const MenuItem = ({ setActive, active, item, children }) => {
   return (
     <div onMouseEnter={() => setActive(item)} className="relative">
       <motion.p
@@ -56,12 +48,7 @@ export const MenuItem = ({ setActive, active, item, children }: MenuItemProps) =
   );
 };
 
-interface MenuProps {
-  setActive: (item: string | null) => void;
-  children: ReactNode;
-}
-
-export const Menu = ({ setActive, children }: MenuProps) => {
+export const Menu = ({ setActive, children }) => {
   return (
     <nav
       onMouseLeave={() => setActive(null)}
@@ -72,14 +59,7 @@ export const Menu = ({ setActive, children }: MenuProps) => {
   );
 };
 
-interface ProductItemProps {
-  title: string;
-  description: string;
-  href: string;
-  src: string;
-}
-
-export const ProductItem = ({ title, description, href, src }: ProductItemProps) => {
+export const ProductItem = ({ title, description, href, src }) => {
   return (
     <Link href={href} className="flex space-x-2">
       <Image
@@ -99,16 +79,11 @@ export const ProductItem = ({ title, description, href, src }: ProductItemProps)
   );
 };
 
-interface HoveredLinkProps extends LinkProps {
-  children: ReactNode;
-  className?: string;
-}
-
-export const HoveredLink = ({ children, className, ...rest }: HoveredLinkProps) => {
+export const HoveredLink = ({ children, className, ...rest }) => {
   return (
     <Link
       {...rest}
-      className={`text-neutral-700 dark:text-neutral-200 hover:text-red-600 transition-colors duration-300 ${className ?? ""}`}
+      className={`text-neutral-700 dark:text-neutral-200 hover:text-red-600 transition-colors duration-300 ${className || ""}`}
     >
       {children}
     </Link>
