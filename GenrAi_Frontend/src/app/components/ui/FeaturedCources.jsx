@@ -38,7 +38,7 @@ function FeaturedCourses() {
 
   return (
     <div className="relative w-full overflow-hidden bg-white dark:bg-black py-16">
-      {/* Grid background */}
+
       <div
         className={cn(
           "absolute inset-0 z-0",
@@ -47,10 +47,9 @@ function FeaturedCourses() {
           "dark:[background-image:linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)]",
         )}
       />
-      {/* Radial fade overlay */}
+
       <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-black"></div>
 
-      {/* Main content */}
       <motion.div
         className="relative z-20"
         initial="hidden"
