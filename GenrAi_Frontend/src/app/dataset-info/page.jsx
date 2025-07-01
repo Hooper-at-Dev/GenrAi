@@ -12,7 +12,6 @@ import { Lens } from "../components/ui/lens";
 const DatasetInfoPage = () => {
   const [activeTab, setActiveTab] = useState("overview");
 
-  // Reusable CenteredTab wrapper for consistent alignment
   const CenteredTab = ({ children }) => (
     <div className="flex justify-center w-full">
       <div className="w-full max-w-4xl">{children}</div>
@@ -185,7 +184,6 @@ const DatasetInfoPage = () => {
           </h2>
 
           <div className="grid grid-cols-1 gap-8">
-            {/* Genre Distribution */}
             <CardContainer className="w-full">
               <CardBody className="relative p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10">
                 <CardItem translateZ="40" className="w-full">
@@ -212,7 +210,6 @@ const DatasetInfoPage = () => {
               </CardBody>
             </CardContainer>
 
-            {/* Audio Characteristics */}
             <CardContainer className="w-full">
               <CardBody className="relative p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10">
                 <CardItem translateZ="40" className="w-full">
